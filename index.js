@@ -35,6 +35,7 @@ $(document).ready(function () {
     $("#info").hide();
     $("#game").hide();
     $("#themes").hide();
+    
 
 
     function setupGame(pairsCount, timeLimit) {        
@@ -125,6 +126,7 @@ $(document).ready(function () {
         //power up per 10 clicks for medium and hard levels
         console.log("click"+ clicks);
         if (clicks % 10 === 0 && (selectedDifficulty === "medium" ||selectedDifficulty === "hard")){
+            alert("Power up!");
             powerUp();
         }
 
@@ -235,10 +237,12 @@ $(document).ready(function () {
         $("#info").show();
         $("#game").show();
         $("#themes").show();
+        $("#s").show();
         console.log("rp" + remainPairs);
         console.log("pf" + pairsFound);
         console.log("tp" + totalPairs);
-        $("#left").text(remainPairs);       
+        $("#left").text(remainPairs);  
+        $("#time").text(totalTime);     
     });
 
 
@@ -254,6 +258,10 @@ $(document).ready(function () {
         if (totalTime > 0) {
             totalTime--;
             $("#time").text(totalTime);
+            
+            if(totalTime==1){
+                $("#s").hide();
+            }
         } else {
             alert("Time's up! Try again.");
             clearInterval(gameTimer);
